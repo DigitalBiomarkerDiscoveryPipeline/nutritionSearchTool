@@ -1,3 +1,5 @@
+# Nutrition Search Tool
+
 Nutrition information is critical information for general health upkeep, especially for individuals suffering from Type 1 and Type 2 diabetes who continuously monitor their blood glucose concentration. The Big Ideas Lab at Duke is coming up with lots of tools to help nutritionists, clinicians, and individuals use general technology, wearable devices, and machine learning to improve health. This nutrition search tool builds on Joshua D'Arcy's food2vec tool that uses word embeddings from the Google  News Corpus to estimate nutrition information based on cosine similarity.
 
 
