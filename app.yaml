@@ -1,0 +1,6 @@
+xruntime: python38
+
+handlers:
+- url: /
+  script: auto
+

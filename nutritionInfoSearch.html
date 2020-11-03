@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</head>
+<body>
+
+<h2 style="text-align:center; color:#00B894">Powered by Nutrics @ BIG IDEAs Lab</h2>
+<center>
+    <div>
+    <input type="text" placeholder="Search.." name="search" style="width:600px" id='searchBar'>
+    <button onclick="getNutritionInfo()" onfocus="getNutritionInfo()"><i class="fa fa-search"></i></button>
+    </div>
+    <p id="nutritionInfo" value="searchResults"></p>
+</center>
+
+<script>
+function getNutritionInfo(){
+    const text_el = document.getElementById('nutritionInfo');
+    var searchItem = document.getElementById('searchBar').value;
+    if (searchItem.length == 0){
+        text_el.innerHTML = "Please enter a food item in the search bar!";
+        return;
+    }
+  
+    const url = 'https://nutrition-server.du.r.appspot.com/get_random_nutrients/?search=' + searchItem.toLowerCase();
+    fetch(url,{method:'GET'})
+    .then(
+          function(response) {
+            if (response.status !== 200) {
+                text_el.innerHTML = ('Looks like there was a problem. Status Code: ' + response.status);
+                return;
+            }
+            // Examine the text in the response
+            response.json().then(function(data) {
+                jsonArray = data;
+                //text_el.innerHTML = JSON.stringify(jsonArray);
+                str = "";
+                for (i = 0; i < jsonArray.length; i++){
+                    if (jsonArray[i].hasOwnProperty("item_name")){
+                        str += "item_name: " + jsonArray[i].item_name + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("carbohydrates")){
+                        str += "carbohydrates: " + jsonArray[i].carbohydrates + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("sugar")){
+                        str += "sugar: " + jsonArray[i].sugar + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("total_fats")){
+                        str += "total_fats: " + jsonArray[i].total_fats + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("sat_fats")){
+                        str += "sat_fats: " + jsonArray[i].sat_fats + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("protein")){
+                        str += "protein: " + jsonArray[i].protein + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("fiber")){
+                        str += "fiber: "+ jsonArray[i].fiber + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("calories")){
+                        str += "calories: " + jsonArray[i].calories + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("cholesterol")){
+                        str += "cholesterol: "  + jsonArray[i].cholesterol + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("potassium")){
+                        str += "potassium: " + jsonArray[i].potassium + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("sodium")){
+                        str += "sodium: " + jsonArray[i].sodium + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("calcium")){
+                        str += "calcium: " + jsonArray[i].calcium + "<br>";
+                    }
+                    if (jsonArray[i].hasOwnProperty("magnesium")){
+                        str += "magnesium: " + jsonArray[i].magnesium + "<br>";
+                    }
+                    str += "<br><br>";
+                }
+                text_el.innerHTML = str;
+            });
+          }//function response
+      )
+      .catch(function(err) {
+        text_el.innerHTML = err;
+      });
+}//getNutritionInfo
+</script>
+
+
+</body>
+</html>
