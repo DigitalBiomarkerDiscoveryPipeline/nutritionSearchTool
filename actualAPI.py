@@ -1,4 +1,4 @@
-# Author:        #theBlackFemaleEngineer
+# Author:        Lucy (theBlackFemaleEngineer)
 # Date:          28 October 2020
 # Description:   This is a file for using Joshua's food2vec API to
 #                get nutrition information for a food item.
@@ -11,7 +11,7 @@ def test(search="apple"):
     estimator = Estimator()
     print("---Trying to get an estimate for %s" %search)
     print("\n")
-    
+
     # Search database for nutrition estimates                                                                     
     match = estimator.natural_search("I ate %s" % search)
     outputDict = []
