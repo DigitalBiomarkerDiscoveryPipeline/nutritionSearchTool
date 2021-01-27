@@ -62,6 +62,8 @@ function getNutritionInfo(){
     if (searchItem.length == 0){
         text_el.innerHTML = "Please enter a food item in the search bar!";
         return;
+    }else{
+        text_el.innerHTML = "Fetching nutrition information . . ."
     }
   
     const url = 'https://nutrition-info-website.uk.r.appspot.com/get_random_nutrients/?search=' + searchItem.toLowerCase();
