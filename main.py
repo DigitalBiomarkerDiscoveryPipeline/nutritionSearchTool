@@ -1,4 +1,4 @@
-# Author:       #theBlackFemaleEngineer
+# Author:       Lucy (theBlackFemaleEngineer)
 # Date:         28 October 2020
 # Description:  This is a basic main file for the nutrition API server
 
@@ -13,7 +13,7 @@ app = Flask(__name__)
 @app.route("/", methods=["GET"])
 def hello():
     """ Return a friendly HTTP greeting. """
-    resp = Response("apple!")
+    resp = Response("evoo!")
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
